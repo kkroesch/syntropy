@@ -20,6 +20,7 @@ HISTORY_IGNORE="(history|ls|cd|fc|la|pwd|exit)"
 # =============================================================================
 path+=("$HOME/.libshell" "$HOME/.local/bin")
 fpath=( ~/.zfunc "${fpath[@]}" )
+cdpath+=(~/Projects)
 
 export GPG_TTY=$(tty)
 
@@ -67,10 +68,8 @@ bindkey '^[^H' backward-kill-word
 # =============================================================================
 
 # FZF
-[[ -f /usr/share/fzf/key-bindings.zsh ]] && source /usr/share/fzf/key-bindings.zsh
-[[ -f /usr/share/fzf/shell/key-bindings.zsh ]] && source /usr/share/fzf/shell/key-bindings.zsh
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
-bindkey '^R' fzf-history-widget
+source <(fzf --zsh)
 
 # =============================================================================
 # 5. Completions & Prompt (Starship)
@@ -83,3 +82,5 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 eval "$(starship init zsh)"
 
 eval "$(direnv hook zsh)"
+
+eval "$(zoxide init zsh)"
