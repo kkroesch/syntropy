@@ -1,0 +1,23 @@
+Host *
+    ServerAliveInterval 60
+    ServerAliveCountMax 5
+    StrictHostKeyChecking accept-new
+    IdentitiesOnly yes
+    AddKeysToAgent yes
+    LogLevel ERROR
+    IdentityFile ~/.ssh/id_ed25519
+
+Host *.kroesch.net
+    VerifyHostKeyDNS yes
+    CheckHostIP no
+
+
+Host outpost
+    User ansible
+
+Host 10.100*
+    User ansible
+    UserKnownHostsFile /dev/null
+    StrictHostKeyChecking no
+    LogLevel ERROR
+
