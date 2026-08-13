@@ -12,9 +12,6 @@ Host *.kroesch.net
     CheckHostIP no
 
 
-Host outpost
-    User ansible
-
 Host 10.100*
     User ansible
     UserKnownHostsFile /dev/null
