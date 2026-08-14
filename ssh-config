@@ -18,3 +18,10 @@ Host 10.100*
     StrictHostKeyChecking no
     LogLevel ERROR
 
+Host localhost
+    Port 2222
+    User debian
+    UserKnownHostsFile /dev/null
+    StrictHostKeyChecking no
+    LogLevel ERROR
+

@@ -15,7 +15,6 @@
 set -eu
 
 USER_NAME="${USER_NAME:-karsten}"
-REMOTE_URL="${REMOTE_URL:-https://kroesch.ch/setup}"
 
 NERD_FONT="${NERD_FONT:-JetBrainsMono}"
 FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/${NERD_FONT}.tar.xz"
@@ -47,7 +46,7 @@ if [ "$(id -u)" -eq 0 ] && [ "$IS_MAC" = false ]; then
         export DEBIAN_FRONTEND=noninteractive
         apt-get update -qq
         apt-get install -y --no-install-recommends \
-            zsh curl ca-certificates tar xz-utils gzip git gcc sudo ansible fontconfig
+            zsh curl ca-certificates tar xz-utils gzip git gcc sudo ansible fontconfig dbus-user-session libpam-systemd
     elif have dnf; then
         dnf install -y zsh curl ca-certificates tar xz gzip git gcc sudo ansible fontconfig
     elif have pacman; then
@@ -215,7 +214,8 @@ else
     fail eget-tools
 fi
 
-systemctl --user enable --now ssh-agent.service
+# Klappt bei Debain nicht
+# systemctl --user enable --now ssh-agent.service
 
 # ---------------------------------------------------------
 # 5. Dotfiles 
