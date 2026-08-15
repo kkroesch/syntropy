@@ -1,0 +1,31 @@
+# Navigation (setzt eza voraus)
+alias ls="eza"
+alias ll="eza --icons -l"
+alias la="eza --icons -la"
+alias lt="eza --tree"
+
+# Editoren & Data Tools
+alias v="nvim"
+alias vi="nvim"
+alias vd="visidata"
+
+# Python / UV Shortcuts
+alias py="python"
+
+# Bequemlichkeit
+alias c="clear"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+ 
+function gsy() {
+   # Automated Git sync with doing at least damage as possible
+   if [ -z "$(git status --porcelain)" ]; then
+      echo "No changes."
+   else
+      git add -A
+      git commit -m "Automated sync."
+      git pull --rebase --autostash
+      git push
+   fi
+}
