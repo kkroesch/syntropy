@@ -1,7 +1,19 @@
 VM_NAME := "debian-desktop"
 
+dotfiles:
+	@tar czf dotfiles.tar.gz \
+		.config \
+		.gitconfig \
+		.ssh \
+		.zshenv \
+		.zshrc
+
+# ---------------------------------------- 
+# Testing VM
+# ---------------------------------------- 
+
 vm:
-	virt-install \
+	@virt-install \
 		--name debian-desktop \
 		--memory 2048 \
 		--vcpus 2 \
