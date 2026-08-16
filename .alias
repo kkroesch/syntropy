@@ -3,6 +3,7 @@ alias ls="eza"
 alias ll="eza --icons -l"
 alias la="eza --icons -la"
 alias lt="eza --tree"
+alias lss="la -rs size"
 
 # Editoren & Data Tools
 alias v="nvim"
