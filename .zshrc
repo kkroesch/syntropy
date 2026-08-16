@@ -18,7 +18,7 @@ HISTORY_IGNORE="(history|ls|cd|fc|la|pwd|exit)"
 # =============================================================================
 # 2. Pfade & Environment
 # =============================================================================
-path+=("$HOME/.libshell" "$HOME/.local/bin")
+path+=("$HOME/.local/bin")
 fpath=( ~/.zfunc "${fpath[@]}" )
 cdpath+=(~/Projects)
 
@@ -31,7 +31,6 @@ source ~/.alias
 
 # Lade die Git-Aliases von OhMyZSH als Standalone-Datei (siehe unten)
 [ -f ~/.config/zsh/git.plugin.zsh ] && source ~/.config/zsh/git.plugin.zsh
-
 
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
 

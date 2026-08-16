@@ -1,6 +1,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
+$container\
 $username\
 $hostname\
 $directory\
@@ -8,7 +9,6 @@ $git_branch\
 $git_state\
 $git_status\
 $cmd_duration\
-$line_break\
 $python\
 $character"""
 
@@ -48,3 +48,9 @@ format = "[$virtualenv]($style) "
 style = "bright-black"
 detect_extensions = []
 detect_files = []
+
+[container]
+format = '[$symbol $name]($style) '
+symbol = '📦 '
+style = 'bold yellow'
+disabled = false
