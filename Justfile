@@ -1,4 +1,4 @@
-VM_NAME := "debian-desktop"
+VM_NAME := "desktop"
 
 dotfiles:
 	@tar czf dotfiles.tar.gz \
@@ -14,25 +14,26 @@ dotfiles:
 
 vm:
 	@virt-install \
-		--name debian-desktop \
-		--memory 2048 \
-		--vcpus 2 \
-		--disk size=20,bus=virtio \
-		--location https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/ \
-		--extra-args="console=ttyS0" \
-		--graphics none \
-		--network network=default,model=virtio \
-		--os-variant debian13 
+  	--name fedora-test \
+  	--memory 2048 \
+  	--vcpus 2 \
+  	--disk size=20,bus=virtio \
+  	--location https://download.fedoraproject.org/pub/fedora/linux/releases/44/Everything/x86_64/os/ \
+  	--extra-args="console=ttyS0 inst.text" \
+  	--extra-args="console=ttyS0 inst.text inst.ks=http://dein-webserver/kickstart.ks" \
+  	--graphics none \
+  	--network network=default,model=virtio \
+  	--os-variant fedora-rawhide
 
 snapshot:
-	virsh snapshot-create-as debian-desktop "clean-base" "Before Setup"
+	virsh snapshot-create-as desktop "clean-base" "Before Setup"
 
 revert:
-	virsh snapshot-revert debian-desktop --snapshotname clean-base
+	virsh snapshot-revert desktop --snapshotname clean-base
 
 shutdown:
-	virsh shutdown debian-desktop
+	virsh shutdown desktop
 
 clean:
-	virsh destroy debian-desktop
-	virsh undefine --remove-all-storage debian-desktop
+	virsh destroy desktop
+	virsh undefine --remove-all-storage desktop
