@@ -18,6 +18,8 @@ alias c="clear"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+alias k="kubectl"
  
 function gsy() {
    # Automated Git sync with doing at least damage as possible

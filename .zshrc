@@ -78,6 +78,8 @@ compinit
 # Tab-Completion: Case-insensitive (Gross-/Kleinschreibung ignorieren)
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
+source $HOME/.config/git.plugin.zsh
+
 eval "$(starship init zsh)"
 
 eval "$(direnv hook zsh)"
