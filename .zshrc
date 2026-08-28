@@ -35,21 +35,41 @@ source ~/.alias
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
 
 autoload -U zmv
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 
 # Sudo Plugin Ersatz (Esc-Esc)
 sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
-    [[ $BUFFER != sudo\ * ]] && LBUFFER="sudo $LBUFFER"
+    if [[ $BUFFER == sudo\ * ]]; then
+        LBUFFER="${LBUFFER#sudo }"
+    else
+        LBUFFER="sudo $LBUFFER"
+    fi
 }
 zle -N sudo-command-line
-bindkey '\e\e' sudo-command-line
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
+# An alle Keymaps binden
+for map in emacs viins vicmd; do
+    bindkey -M $map '\e\e' sudo-command-line 2>/dev/null
+done
 
 # Key Bindings
 bindkey -e
 bindkey '^b' backward-word
 bindkey '^f' forward-word
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
+
+bindkey -M vicmd 'k' up-line-or-beginning-search
+bindkey -M vicmd '^[[A' up-line-or-beginning-search
+bindkey -M vicmd '^[OA' up-line-or-beginning-search
+bindkey -M vicmd 'j' down-line-or-beginning-search
+bindkey -M vicmd '^[[B' down-line-or-beginning-search
+bindkey -M vicmd '^[OB' down-line-or-beginning-search
 
 # Ctrl-W: Wort rückwärts löschen
 bindkey '^W' backward-kill-word
