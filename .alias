@@ -20,6 +20,8 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 alias k="kubectl"
+
+alias genpass="gpg --gen-random --armor 1 24"
  
 function gsy() {
    # Automated Git sync with doing at least damage as possible
