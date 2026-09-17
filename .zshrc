@@ -32,7 +32,9 @@ source ~/.alias
 # Lade die Git-Aliases von OhMyZSH als Standalone-Datei (siehe unten)
 [ -f ~/.config/zsh/git.plugin.zsh ] && source ~/.config/zsh/git.plugin.zsh
 
-export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
+if [[ "$OSTYPE" != darwin* ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
+fi
 
 autoload -U zmv
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
