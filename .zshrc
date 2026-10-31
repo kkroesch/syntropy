@@ -107,3 +107,9 @@ eval "$(starship init zsh)"
 eval "$(direnv hook zsh)"
 
 eval "$(zoxide init zsh)"
+
+# Hermes Agent command
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH" ;; esac
+
+# opencode
+export PATH=/var/home/karsten/.opencode/bin:$PATH

@@ -21,7 +21,8 @@ alias ....="cd ../../.."
 
 alias k="kubectl"
 
-alias genpass="gpg --gen-random --armor 1 24"
+#alias genpass="gpg --gen-random --armor 1 24"
+alias genpass="head -c 32 /dev/urandom | base64"
  
 function gsy() {
    # Automated Git sync with doing at least damage as possible
@@ -34,3 +35,5 @@ function gsy() {
       git push
    fi
 }
+
+alias kpass="flatpak run --command=keepassxc-cli org.keepassxc.KeePassXC"
